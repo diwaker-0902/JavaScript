@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM learning</title>
+   
+</head>
+<body  style="background-color: #212121; color: #fff;">
+    
+
+
+
+
+        <div class="parent">
+            <div class=""day>Monday</div>                        
+            <div class=""day>Tuesday</div>    
+            <div class=""day>Wednesday</div>            
+            <div class=""day>Thursday</div>    
+
+    
+            
+        </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent')    //parent elemnt ko select karke isme ke element ko dkho and store in a variable
+    console.log(parent);
+
+    console.log(parent.children) // parent main kitne children mile hain(& we got html collection which is almost array like property)
+    console.log(parent.children[1].innerHtml)
+    console.log(parent.children[0])
+    console.log(parent.children[2])
+    console.log(parent.children[3])
+
+    for(let i = 0; i<parent.children.length; i++){ //parent.children will give us HTML collection
+        parent.children[i].innerHtml;
+    }
+    
+
+    parent.children[1].style.color = "orange"
+    console.log(parent.firstElementChild);  // o/p: <div class="" day="">Monday</div>
+
+    const dayOne = document.querySelector('.day')    // jo bhi first day aa jaega wo de dega. yaha dayOne ayega
+    console.log(dayOne)
+    console.log(dayOne.parentElement) // Monday
+    console.log(dayOne.nextElementSibling) // Tuesday
+
+    console.log("NODES: ", parent.childNodes)  // it is a complex tree like structure(even a line-break,  will also considered as node element)
+
+</script>
+
+</html>

@@ -1,0 +1,61 @@
+
+// Edit and remove elements in DOM
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript and me</title>
+
+</head>
+<body style="background-color: #212121; color: #fff">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+   
+</body>
+<script>
+    function addLanguage(langName){
+        const li = document.createElement('li');     // listItem create hogya 
+        li.innerHTML = `${langName}`                // jo listItem create  hua hai innerHTML main value bhi add kardi (abhi ye hawa hain hain li ab isko language main add karenge)
+// so select karke.
+        document.querySelector('.language').appendChild(li)  // class wali querySelector 
+    }
+
+    addLanguage("python")
+    addLanguage("Java")
+// here we are adding languages but it is not a good way to adding languages
+// qki humko add karne ke liye poora ka poora tree traverse karna pad raha hain    
+
+
+    function addOptimizedLanguage(langName){
+        const li = document.createElement('li')
+
+        // const addText = document.createTextNode(langName)
+        // li.appendChild(addText)
+        // or
+        li.appendChild(document.createTextNode(langName))
+
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptimizedLanguage('golang')
+    addOptimizedLanguage("C++")
+
+    // Now edit the value (python ki jagah par Mojo)
+    const secondLang = document.querySelector("li:nth-child(2)")
+    // secondLang.innerHTML = "Mojo" (Not a good approach becoz poora tree traverse karna padega)
+    const newli = document.createElement('li')
+    newli.textContent = "Mojo"
+    secondLang.replaceWith(newli)
+
+    // one more edit code example (JavaScript ki jagah par TypeScript)
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = '<li>TypeScript</li>'    
+
+    // remove (C++ ko remove karte hain)
+    const lastLang = document.querySelector('li:last-child')
+    lastLang.remove() // yaha par C++ last main thha jo ki ab remove ho chuka hain
+</script>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML EVENTS</title>
+</head>
+<body style="background-color: #414141; color: aliceblue">
+    <H2>Amazing Images</H2>
+    <div>
+        <ul id="images"></ul>
+        <li><img width="200px" id="login" src="Screenshot (70).png" alt="Login Authencation"></li>
+        <!-- <li><img width="200px" id="applet" src="Screenshot (71).png" alt="" onclick="alert('applet')"> </li> // but this(html main inject) is not a good method to add event scale karne par problem hogi -->
+        <li><img width="200px" id="applet" src="Screenshot (71).png" alt=""></li>
+        <li><img width="200px" id="dot" src="Screenshot (72).png" alt="Red dot"></li>
+        <li><img width="200px" id="pages" src="Screenshot (73).png" alt="Multiple pages"></li>
+    </div>
+</body>
+
+
+
+<script>
+          //<!-- document.getElementById('applet').onclick = function(){
+         //  alert("applet clicked")
+        //} -->
+       // <!-- This is also not good approach to handle event (id par jab onclick event lagaya tohh onclick event main kuch ho sakti hain qki jyada info nahi nahi milti hain id se isliye)-->
+      //  <!-- So, instead of this we should use eventListener -->
+     // eventListener humko onClick ke sath propogation ki ability bhi dete hain
+
+    // document.getElementById('applet').addEventListener('click', function(){
+      //  alert("applet clicked again")
+   //  }, false) // we are seeing click event and false default hain likho ya na likho right hain
+
+     // <!-- more method -->
+     // attachEvent() - ye use hota thha early time par jag internet explorer ka sab log use karte thhe
+     // jQuery - isme .onEvent laga kaar kaam ho jata thha (old technique)
+
+     // Now let's talk about event object
+     //document.getElementById('applet').addEventListener('click', function(e){
+      //  console.log(e)
+    // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     // Events we should must learn
+     // timeStamp, type, dafaultPrevented, target, toElement, srcElement, currentTarget, clientX, clientY, altkey, ctrlkey, shiftkey, keycode
+
+     // event propogation
+     // event propogation has two context
+     // 1. event bubbling (default - false wala) (bubbling inside se outside hota hain)
+     // 2. event capturing (true)
+
+      document.getElementById('login').addEventListener('click', function(e){
+        console.log("clicked inside the ul");
+     }, true) // default false hain but yaha humne true karke capturing ki hain
+
+     document.getElementById('applet').addEventListener('click', function(e){
+        console.log("applet clicked");
+     }, false)
+
+     document.getElementById('dot').addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("dot clicked")
+     }, false)
+ 
+
+
+// images ko remove karne ke liye
+     document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.parentNode);
+        let removeIt = e.target.parentNode
+        removeIt.remove()
+       // removeIt.parentNode.removeChild(removeIt)
+
+     })
+</script>
+
+</html>
